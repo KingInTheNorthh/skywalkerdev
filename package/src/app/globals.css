@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------
+   A WORKING ARCHIVE — design tokens
+   Paper, ink, one oxide accent. Editorial, not electric.
+----------------------------------------------------------------- */
+
+@theme {
+  --color-paper: #f2eee3;
+  --color-paper-2: #e9e3d3;
+  --color-ink: #1b1813;
+  --color-ink-2: #6b6457;
+  --color-oxide: #b8431a;
+  --color-line: rgb(27 24 19 / 0.16);
+  --color-line-paper: rgb(242 238 227 / 0.18);
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-jetmono), ui-monospace, "SF Mono", monospace;
+
+  --ease-exhibit: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.18em;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-oxide);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-oxide);
+    outline-offset: 3px;
+  }
+
+  /* Custom cursor active: hide the native one (added by JS, fine pointers only) */
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [data-cursor] {
+    cursor: none;
+  }
+}
+
+/* ---- Editorial utilities ---------------------------------------- */
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+}
+
+@utility font-display-wonk {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+}
+
+/* Mono archival label: `02 / CRAFT` style metadata */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--text-label--letter-spacing);
+  line-height: var(--text-label--line-height);
+  text-transform: uppercase;
+}
+
+/* Hollow display type, used for ghosted case-file numbers */
+@utility text-hollow {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+/* Underline that draws itself on hover */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.5s var(--ease-exhibit);
+  padding-bottom: 2px;
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Row that floods with ink from the left on hover */
+@utility flood-row {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.55s var(--ease-exhibit);
+    z-index: -1;
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Marquee ----------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 28s) linear infinite;
+  will-change: transform;
+}
+
+/* ---- Easter-egg stamp -------------------------------------------- */
+
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: rotate(-14deg) scale(2.4);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(-8deg) scale(0.96);
+  }
+  70% {
+    transform: rotate(-8deg) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+.stamp {
+  animation: stamp-in 0.5s var(--ease-exhibit) both;
+}
+
+/* ---- Motion safety ------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
