@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { identity } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
 import Grain from "@/components/ui/Grain";
@@ -31,7 +32,7 @@ const jetMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lspeterson.dev"),
+  metadataBase: new URL(siteUrl),
   title: `${identity.fullName} — ${identity.role}`,
   description:
     "A working archive. Lawrence “Skywalker” Peterson — backend, systems, cybersecurity and embedded engineering from Ghana. DNS servers, debuggers and transaction plumbing.",
