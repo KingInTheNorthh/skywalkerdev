@@ -128,13 +128,15 @@ export default function Opening() {
             data-fade
             className="label col-span-12 mt-4 leading-loose text-ink-2 md:col-span-4 md:col-start-1 md:row-start-1 md:mt-1"
           >
-            CALLSIGN — “{identity.alias}”
-            <br />
             {identity.role}
             <br />
             {identity.location}
             <br />
-            <span className="text-oxide">{identity.honor}</span>
+            {identity.honors.map((honor) => (
+              <span key={honor} className="block text-oxide">
+                {honor}
+              </span>
+            ))}
           </p>
         </div>
       </div>

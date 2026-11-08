@@ -9,7 +9,7 @@ export const identity = {
   initials: "L.S.P.",
   alias: "SKYWALKER",
   role: "Backend · Systems · Security · Embedded",
-  honor: "WINNER — CODEQUEST 2025",
+  honors: ["WINNER — CODEQUEST 2025", "Claude Hackathon Winner, 2026"],
   location: "Kumasi / Accra, Ghana",
   coordinates: "6°41′N 1°37′W",
   email: "lspeterson@st.knust.edu.gh",
@@ -32,7 +32,7 @@ export type SectionId = (typeof sections)[number]["id"];
 export const opening = {
   kicker: "A WORKING ARCHIVE — PORTFOLIO N°01",
   statement:
-    "No flashy projects — just a ton of systems-level, backend work. I build the layer everything else stands on.",
+    "Author, Hacker, Software Developer.",
   marquee: [
     "BACKEND SYSTEMS",
     "SYSTEMS PROGRAMMING",
@@ -44,57 +44,72 @@ export const opening = {
 };
 
 export const philosophy = {
-  intro: "Four working beliefs, held loosely and tested often.",
+  intro:
+    "Four things I keep coming back to — the wire, the metal, the build, the page. I hold them loosely and test them often.",
   lines: [
     {
-      text: "It is not turtles all the way down. Somebody has to understand the bottom — I'd rather it be me.",
-      note: "i. on the stack",
+      text: "Security is the first way I look at anything. I read every packet as if someone built it against me, then go find out whether they did.",
+      note: "i. on the wire",
     },
     {
-      text: "Trust is a budget, not a default. Every byte off the wire is a stranger until it proves otherwise.",
-      note: "ii. on trust",
+      text: "I'm happiest close to the metal. Registers, syscalls, cache lines — the bottom of the stack is where the truth lives, and I'd rather understand it than abstract it away.",
+      note: "ii. on the metal",
     },
     {
-      text: "The best systems are boring at 3 a.m. Boring is engineered, and it is worth every hour it costs.",
-      note: "iii. on production",
+      text: "Building is how I think. I'd rather ship something small and honest than describe something grand — the work teaches me what the docs never could.",
+      note: "iii. on the build",
     },
     {
-      text: "Slow is smooth, smooth is fast. Shipping is a side effect of understanding.",
-      note: "iv. on pace",
+      text: "I write to make sense of my own experience. Essays, notes, half-finished drafts — the page is where the noise turns into something I actually learned.",
+      note: "iv. on the page",
     },
   ],
 };
 
 export const craft = {
   intro:
-    "How the work actually gets made. Principles first, instruments second — in that order on purpose.",
+    "How the work actually gets made: read the system, break the parts worth breaking, then build something that survives the wire. Principles first, instruments second — in that order on purpose.",
   principles: [
     {
-      title: "Read first, write second.",
-      body: "I read a system before I change it. Most bugs are biographies; the fix is in the history.",
+      title: "Understand before using.",
+      body: "A black box is a future bug. I read the source, the syscall, the packet — whatever it takes to know what the thing actually does.",
     },
     {
-      title: "Trust nothing on the wire.",
-      body: "Parse defensively, validate at the boundary, and assume the packet was crafted by someone clever and bored.",
+      title: "Read the logs nobody opens.",
+      body: "Threat intel is a habit, not a product. The interesting story is usually in the line everyone else scrolled past.",
     },
     {
-      title: "Boring at 3 a.m.",
-      body: "Logs a stranger could read, failure modes chosen on purpose, alerts that mean something.",
+      title: "Break it to understand it.",
+      body: "Reversing is just reading with more friction. gdb, Ghidra, radare2 — I want to know what a binary does before it tells me.",
+    },
+    {
+      title: "Automate the boring.",
+      body: "Did it twice? It's a script now. Python and Bash keep my hands free for the parts that actually need me.",
     },
     {
       title: "Touch the metal.",
-      body: "Embedded work keeps you honest — the hardware does not care about your abstractions.",
+      body: "C, C++, Rust, registers and cache lines. The hardware does not care about your abstractions — that is exactly why I trust it.",
+    },
+    {
+      title: "Learn from failure.",
+      body: "Core dumps are honest feedback. I'd rather have a crash I can read than a bug that hides.",
     },
   ],
   instruments: [
-    { name: "Rust", role: "the scalpel" },
     { name: "C & C++", role: "the bare metal" },
+    { name: "Rust", role: "the scalpel" },
     { name: "Go", role: "the workhorse" },
-    { name: "Java & Spring", role: "the freight line" },
     { name: "Python & Bash", role: "the duct tape" },
-    { name: "Apache Kafka", role: "the firehose" },
+    { name: "Java & Spring", role: "the freight line" },
+    { name: "TypeScript & Node", role: "the web layer" },
+    { name: "Arch Linux", role: "the territory" },
+    { name: "gdb · strace", role: "the microscope" },
+    { name: "Ghidra · radare2 · objdump", role: "the dissecting table" },
+    { name: "Wireshark · tcpdump", role: "the wiretap" },
+    { name: "Fuzzers · sanitizers", role: "the chaos engine" },
     { name: "PostgreSQL & MongoDB", role: "the memory" },
-    { name: "Linux · Nginx · K8s", role: "the territory" },
+    { name: "Apache Kafka", role: "the firehose" },
+    { name: "Nginx · Docker · K8s", role: "the shipping lane" },
   ],
 };
 
